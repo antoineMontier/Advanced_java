@@ -123,5 +123,12 @@ public class Polynom{
         return res;
     }
 
+    public Polynom derivate(){
+        Polynom res = new Polynom();
+        for(int i = 1; i < COEF_NUMBER  ; i++)
+            res.addMonom(i*coef[i], i-1);
+        return res;
+    }
+
 
 }

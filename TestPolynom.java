@@ -29,7 +29,10 @@ public class TestPolynom {
         assert((g.plus(h).minus(p)).equals(g.minus(p)));
         assert((g.mult(h)).equals(p.mult(h)));
         assert(h.plus(h).equals(h));
-        System.out.println(p.mult(g));
+        assert(h.derivate().equals(h));
+        
+
+        System.out.println(g.derivate());
 
         System.out.println("\n\n");
     }
