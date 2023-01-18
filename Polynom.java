@@ -34,6 +34,8 @@ public class Polynom{
     public void addMonom(double a, int deg){
         if(deg < 0 && deg > COEF_NUMBER)
             throw new IllegalArgumentException("degree of a monom must be between 0 and " + COEF_NUMBER);
+        if(coef[deg] == 0)
+            size++;
         coef[deg] = coef[deg] + a;
     }
 
@@ -46,31 +48,40 @@ public class Polynom{
 
     @Override
     public String toString(){
-        if(size == 0){
+        if(size == 0)
             return "0";
-        }
-        String res = "";
-        if(coef[0] > 0)
-            res += "" + coef[0];
-        else if(coef[0] < 0)
-            res += "- " + (-coef[0]);
+        String res ="";
+        for(int i=0; i< COEF_NUMBER; i++){
+            if(coef[i] != 0){
+                if(coef[i] > 0){
+                    if(i == 0)
+                        res += " + " + coef[i];
+                    else if (i == 1)
+                        res += " + " + coef[i] + "x";
+                    else
+                        res += " + " + coef[i] + "x^"+i;
+                }else{//coef[i] < 0
+                    if(i == 0)
+                        res += " - " + (-coef[i]);
+                    else if (i == 1)
+                        res += " - " + (-coef[i]) + "x";
+                    else
+                        res += " - " + (-coef[i]) + "x^"+i;
+                }
 
-        for(int i=0; i<size; i++){
-            if(coef[i] > 0){
-                if(i > 1)
-                    res += " + "+coef[i]+"x^"+i;
-                else if(i == 1)
-                    res += " + " + coef[i]+"x";
-                else if(i == 0)
-                    res += " + " + coef[i];
-            }else if(coef[i] < 0){
-                if(i > 1)
-                    res += " - "+ (-coef[i])+"x^"+i;
-                else if(i == 1)
-                    res += " - " + (-coef[i])+"x";
-                else if(i == 0)
-                    res += " - " + (-coef[i]);            }
+
+            }
         }
+        return res;
+    }
+
+
+
+    public String toTab(){
+        String res = "[" + coef[0];
+        for(int i = 1; i < COEF_NUMBER-1 ; i++)
+            res += ", " + coef[i];
+        res += ", " + coef[COEF_NUMBER-1] + "]";
         return res;
     }
 
