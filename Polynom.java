@@ -32,7 +32,7 @@ public class Polynom{
     }
 
     public void addMonom(double a, int deg){
-        if(deg < 0 && deg > COEF_NUMBER)
+        if(a!=0&&deg < 0 && deg >= COEF_NUMBER)
             throw new IllegalArgumentException("degree of a monom must be between 0 and " + COEF_NUMBER);
         if(coef[deg] == 0)
             size++;
@@ -68,20 +68,58 @@ public class Polynom{
                     else
                         res += " - " + (-coef[i]) + "x^"+i;
                 }
-
-
             }
         }
         return res;
     }
-
-
 
     public String toTab(){
         String res = "[" + coef[0];
         for(int i = 1; i < COEF_NUMBER-1 ; i++)
             res += ", " + coef[i];
         res += ", " + coef[COEF_NUMBER-1] + "]";
+        return res;
+    }
+
+    private void updateSize(){
+        size = 0;
+        for(int i = 0; i < COEF_NUMBER ; i++)
+            if(coef[i] != 0)
+                size++;
+    }
+
+    public Polynom plus(Polynom other){
+        Polynom res = new Polynom();
+        for(int i = 0 ; i < COEF_NUMBER ; i++)
+            res.addMonom(this.coef(i) + other.coef(i), i);
+        res.updateSize();
+        return res;
+    }
+
+    public Polynom minus(Polynom other){
+        Polynom res = new Polynom();
+        for(int i = 0 ; i < COEF_NUMBER ; i++)
+            res.addMonom(this.coef(i) - other.coef(i), i);
+        res.updateSize();
+        return res;
+    }
+
+    public boolean equals(Polynom other){
+        for(int i = 0; i < COEF_NUMBER ; i++)
+            if(coef[i] != other.coef(i))
+                return false;
+        return true;
+    }
+
+    public Polynom mult(Polynom other){
+        Polynom res = new Polynom();
+        if(size == 0 || other.equals(res))//0 exception
+            return res;
+        for(int i = 0; i < COEF_NUMBER ; i++)
+            for(int j = 0; j < COEF_NUMBER ; j++)
+                if(i+j < COEF_NUMBER)
+                    res.addMonom(coef[i]*other.coef(j), j+i);
+        other.updateSize();
         return res;
     }
 
