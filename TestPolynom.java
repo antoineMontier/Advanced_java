@@ -41,11 +41,8 @@ public class TestPolynom {
         assert((g.mult(h)).equals(p.mult(h)));
         assert(h.plus(h).equals(h));
         assert(h.derivate().equals(h));
-        
 
-        System.out.println(Polynom.euclidian_division(a, b));
-        System.out.println(Polynom.euclidian_rest(a, b));
-        System.out.println(Polynom.euclidian_division(a, b).mult(b).plus(Polynom.euclidian_rest(a, b)));
+        System.out.println(Polynom.pgcd(a, b));
 
 
         System.out.println("\n\n");

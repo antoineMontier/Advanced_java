@@ -160,19 +160,19 @@ public class Polynom{
         return 0;
     }
 
-    public Polynom pgcd(Polynom p, Polynom q){
+    public static Polynom pgcd(Polynom p, Polynom q){
         if(p.degree() == 0 && q.degree() == 0)
             return new Polynom(); // the 0 polynom
         if(p.degree() == 0)
             return new Polynom(q);
-        else if(q.degree() == 0)
+        if(q.degree() == 0)
             return new Polynom(p);
 
 
         if(p.degree() >= q.degree())
-            return divisionRest(p, q);
-        else(q.degree() < p.degree())
-            return divisionRest(q, p);
+            return pgcd(Polynom.euclidian_rest(p, q), q);
+        else// (q.degree() < p.degree())
+            return pgcd(Polynom.euclidian_rest(q, p), p);
     }
 
     public static Polynom euclidian_division(Polynom p, Polynom q) {
@@ -183,17 +183,14 @@ public class Polynom{
         Polynom res = new Polynom();
         Polynom tmp_res = new Polynom();
         while(_p.degree() >= _q.degree()){
-            System.out.println("p= " + _p + "      q = " + _q );
             //find the coefficient of the biggest degree in p and q
             double p_d = _p.getGreaterCoef(), q_d = _q.getGreaterCoef();
             tmp_res.addMonom(p_d / (double) q_d, _p.degree() - _q.degree());
-            System.out.println("tmp= " + tmp_res);
             // substract
             _p = _p.minus(tmp_res.mult(_q));
             // save the founded value
             res = res.plus(tmp_res);
             tmp_res.reset();
-            System.out.println("p= " + _p + "      q = " + _q );
         }
         return res;
     }
