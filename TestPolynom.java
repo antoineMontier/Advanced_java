@@ -5,7 +5,7 @@ public class TestPolynom {
         Polynom p = new Polynom();
         p.addMonom(-1, 0);
         p.addMonom(-3, 1);
-        p.addMonom(0.5, 1);
+        p.addMonom(-.5, 1);
 
         Polynom g = new Polynom();
         g.addMonom(4, 0);
@@ -13,15 +13,26 @@ public class TestPolynom {
 
         Polynom h = new Polynom();
 
-        System.out.println("p = " + p);
-        System.out.println("g = " + g);
-        System.out.println("h = " + h);
+        Polynom a = new Polynom();// a = 2x^3 + 3x^2 - x - 2
+        a.addMonom(2, 3);
+        a.addMonom(3,2);
+        a.addMonom(-1,1);
+        a.addMonom(-2,0);
 
-        System.out.println("(p + g) = " + (p.plus(g)));
-        System.out.println("(p - g) = " + (p.minus(g)));
-        System.out.println("(p - g + p) = " + (p.minus(g).plus(p)));
-        System.out.println("(p - h) = " + (p.minus(h)));
-        System.out.println("(h - p) = " + (h.minus(p)));
+        Polynom b = new Polynom();// b = x^2 + 2x - 3
+        b.addMonom(1, 2);
+        b.addMonom(2, 1);
+        b.addMonom(-3, 0);
+
+
+        //System.out.println("p = " + p);
+        //System.out.println("g = " + g);
+        //System.out.println("h = " + h);
+        //System.out.println("(p + g) = " + (p.plus(g)));
+        //System.out.println("(p - g) = " + (p.minus(g)));
+        //System.out.println("(p - g + p) = " + (p.minus(g).plus(p)));
+        //System.out.println("(p - h) = " + (p.minus(h)));
+        //System.out.println("(h - p) = " + (h.minus(p)));
 
         assert((p.minus(h)).equals(p));
         assert((p.minus(p)).equals(h));
@@ -32,7 +43,10 @@ public class TestPolynom {
         assert(h.derivate().equals(h));
         
 
-        System.out.println(g.derivate());
+        System.out.println(Polynom.euclidian_division(a, b));
+        System.out.println(Polynom.euclidian_rest(a, b));
+        System.out.println(Polynom.euclidian_division(a, b).mult(b).plus(Polynom.euclidian_rest(a, b)));
+
 
         System.out.println("\n\n");
     }

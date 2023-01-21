@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Polynom{
     private int COEF_NUMBER = 20;
-    private double precision = 0.00001;
+    private final double precision = 0.00001;
 
     private double[] coef;
     private int size;
@@ -11,6 +11,14 @@ public class Polynom{
     public Polynom(){
         coef = new double[COEF_NUMBER];
         size = 0;
+    }
+
+    public Polynom(Polynom p){
+        if(p == null) throw new IllegalArgumentException("The given polynom is null");
+        coef = new double[COEF_NUMBER];
+        for(int i=0; i < COEF_NUMBER; i++)
+            coef[i] = p.coef(i);
+        updateSize();
     }
 
     private boolean equals(double x, float y){
@@ -28,6 +36,7 @@ public class Polynom{
     }
 
     public int degree(){
+        updateSize();
         return size -1;
     }
 
@@ -39,6 +48,9 @@ public class Polynom{
         coef[deg] = coef[deg] + a;
     }
 
+    public void reset(){
+        for(int i=0; i<COEF_NUMBER; i++) coef[i] = 0.0;
+    }
 
     public double coef(int deg){
         if(deg < 0 && deg > COEF_NUMBER)
@@ -128,6 +140,66 @@ public class Polynom{
         for(int i = 1; i < COEF_NUMBER  ; i++)
             res.addMonom(i*coef[i], i-1);
         return res;
+    }
+
+    public Polynom divisionRest(Polynom p, Polynom q){
+        if(q.degree() == 0 && q.coef(0) == 0)
+            throw new IllegalArgumentException("the division cannot be operated with a null polynom");
+        else if(p.degree() == 0 && p.coef(0) == 0)
+            return new Polynom(); // the 0 polynom
+        Polynom quotient = euclidian_division(p, q);
+        Polynom res = new Polynom();
+        res = p.minus(q.mult(quotient));
+        return res;
+    }
+
+    public double getGreaterCoef(){
+        for(int i=COEF_NUMBER-1;i>=0;i--)
+            if(coef[i] != 0)
+                return coef[i];
+        return 0;
+    }
+
+    public Polynom pgcd(Polynom p, Polynom q){
+        if(p.degree() == 0 && q.degree() == 0)
+            return new Polynom(); // the 0 polynom
+        if(p.degree() == 0)
+            return new Polynom(q);
+        else if(q.degree() == 0)
+            return new Polynom(p);
+
+
+        if(p.degree() >= q.degree())
+            return divisionRest(p, q);
+        else(q.degree() < p.degree())
+            return divisionRest(q, p);
+    }
+
+    public static Polynom euclidian_division(Polynom p, Polynom q) {
+        if(q.degree() == 0 && q.coef(0) == 0)
+            throw new IllegalArgumentException("the divisor cannot be null !");
+        Polynom _p = new Polynom(p);
+        Polynom _q = new Polynom(q);
+        Polynom res = new Polynom();
+        Polynom tmp_res = new Polynom();
+        while(_p.degree() >= _q.degree()){
+            System.out.println("p= " + _p + "      q = " + _q );
+            //find the coefficient of the biggest degree in p and q
+            double p_d = _p.getGreaterCoef(), q_d = _q.getGreaterCoef();
+            tmp_res.addMonom(p_d / (double) q_d, _p.degree() - _q.degree());
+            System.out.println("tmp= " + tmp_res);
+            // substract
+            _p = _p.minus(tmp_res.mult(_q));
+            // save the founded value
+            res = res.plus(tmp_res);
+            tmp_res.reset();
+            System.out.println("p= " + _p + "      q = " + _q );
+        }
+        return res;
+    }
+
+    public static Polynom euclidian_rest(Polynom p, Polynom q){
+        return p.minus(q.mult(Polynom.euclidian_division(p, q)));
     }
 
 
