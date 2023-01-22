@@ -29,6 +29,24 @@ public class Matrix{
         return res;
     }
 
+    public int width(){
+        return m[0].length;
+    }
 
+    public int height(){
+        return m.length;
+    }
+
+    public double get(int i, int j){
+        if(i < 0 || i >= m.length || j < 0 || j >= m[0].length)
+            throw new IllegalArgumentException("invalid index argument in get(int, int) Matrix");
+        return m[i][j];
+    }   
+
+    public void set(int i, int j, double value){
+        if(i < 0 || i >= m.length || j < 0 || j >= m[0].length)
+            throw new IllegalArgumentException("invalid index argument in get(int, int) Matrix");
+        m[i][j] = value;
+    } 
 
 }
