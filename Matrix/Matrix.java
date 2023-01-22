@@ -49,4 +49,31 @@ public class Matrix{
         m[i][j] = value;
     } 
 
+    public Matrix plus(Matrix other){
+        if(other.width() != width() || other.height() != height())
+            throw new IllegalArgumentException("both matrixs must have the same width and height to be added");
+        Matrix res = new Matrix(height(), width());
+        for(int i = 0; i < width(); i++)
+            for(int j = 0; j < height(); j++)
+                res.set(i, j, other.get(i, j) + m[i][j]);
+        return res;
+    }
+
+    public Matrix minus(Matrix other){
+        if(other.width() != width() || other.height() != height())
+            throw new IllegalArgumentException("both matrixs must have the same width and height to be substracted");
+        Matrix res = new Matrix(height(), width());
+        for(int i = 0; i < width(); i++)
+            for(int j = 0; j < height(); j++)
+                res.set(i, j, - other.get(i, j) + m[i][j]);
+        return res;
+    }
+
+    public Matrix mult(double a){
+        Matrix res = new Matrix(height(), width());
+        for(int i = 0; i < width(); i++)
+            for(int j = 0; j < height(); j++)
+                res.set(i, j, a * m[i][j]);
+        return res;
+    }
 }
