@@ -24,7 +24,7 @@ public class Human {
         fav_drink = "water";
     }
 
-    public void talks(String text){
+    public void talk(String text){
         System.out.println("(" + name + ") : " + text);
     }
 
