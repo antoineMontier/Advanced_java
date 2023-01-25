@@ -29,10 +29,10 @@ public class Human {
     }
 
     public void presentation(){
-        System.out.println("Hey, my name is " + name + " !");
+        talk("Hey, my name is " + name + " and I like " + fav_drink + " !");
     }
 
     public void drink(){
-        System.out.println("A big glass of " + fav_drink + " ! ");
+        talk("A big glass of " + fav_drink + " ! ");
     }
 }

@@ -12,6 +12,11 @@ public class Woman extends Human {
         free = freee;
     }
 
+    public Woman(String name, String dress_color, Boolean freee){
+        super(name, "milk");
+        color = dress_color;
+        free = freee;
+    }
     public void kidnapBy(Robber r){
         if(!free)
             return;
@@ -29,6 +34,11 @@ public class Woman extends Human {
     public void changeDress(String new_color){
         color = new_color;
         talk("Hey look at my new "+color+" dress !");
+    }
+
+    @Override
+    public String getName() {
+        return ("Miss " + super.getName());
     }
 
 }

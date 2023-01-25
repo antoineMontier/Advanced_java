@@ -12,7 +12,7 @@ public class Cowboy extends Human {
     }
 
     public Cowboy(String name){
-        super(name);
+        super(name, "whisky");
         popularity = 0;
         adjective = "brave";
     }
@@ -27,5 +27,12 @@ public class Cowboy extends Human {
         toFree.free(this);
         popularity++;
     }
+
+    @Override
+    public String getName(){
+        return (super.getName());
+    }
+
+
 
 }

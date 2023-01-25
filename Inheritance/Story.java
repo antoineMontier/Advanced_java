@@ -5,12 +5,14 @@ public class Story {
         Cowboy luc = new Cowboy("LuckyLuc", "orange");
         Robber don = new Robber("Don", "Vodka", 150.0);
         Woman lila = new Woman("Lila", "sirop", "Violet", true);
-        lila.kidnapBy(don);
+        don.kidnap(lila);
+        don.presentation();
+        lila.presentation();
         lila.changeDress("pink");
         don.drink();
         luc.presentation();
         luc.shot(don);
         luc.free(lila);
-        
+
     }
 }
