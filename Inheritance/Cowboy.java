@@ -17,6 +17,10 @@ public class Cowboy extends Human {
         adjective = "brave";
     }
 
+    public void setAdjective(String new_adjective){
+        adjective = new_adjective;
+    }
+
     public void shot(Robber victim){
         System.out.println("the " + adjective + " " + getName() + " shoot " + victim.getName() + " !");
         talk("I shoot you !");

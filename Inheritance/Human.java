@@ -29,7 +29,7 @@ public class Human {
     }
 
     public void presentation(){
-        talk("Hey, my name is " + name + " and I like " + fav_drink + " !");
+        talk("Hey, my name is " + getName() + " and I like " + fav_drink + " !");
     }
 
     public void drink(){
