@@ -55,7 +55,7 @@ public class Matrix{
         Matrix res = new Matrix(height(), width());
         for(int i = 0; i < width(); i++)
             for(int j = 0; j < height(); j++)
-                res.set(i, j, other.get(i, j) + m[i][j]);
+                res.set(j, i, other.get(j, i) + m[j][i]);
         return res;
     }
 
@@ -65,7 +65,7 @@ public class Matrix{
         Matrix res = new Matrix(height(), width());
         for(int i = 0; i < width(); i++)
             for(int j = 0; j < height(); j++)
-                res.set(i, j, - other.get(i, j) + m[i][j]);
+                res.set(j, i, -other.get(j, i) + m[j][i]);
         return res;
     }
 
@@ -73,7 +73,25 @@ public class Matrix{
         Matrix res = new Matrix(height(), width());
         for(int i = 0; i < width(); i++)
             for(int j = 0; j < height(); j++)
-                res.set(i, j, a * m[i][j]);
+                res.set(j, i, a * m[j][i]);
+        return res;
+    }
+
+    public Matrix tanspose(){
+        Matrix res = new Matrix(width(), height());
+        for(int i = 0; i < width(); i++)
+            for(int j = 0; j < height(); j++)
+                res.set(i, j, m[j][i]);
+        return res;
+    }
+
+    public Matrix mult(Matrix b){
+        if(b.width() != height() || b.height() != width())
+            throw new IllegalArgumentException("m*n matrix needs to multiply n*m matrix");
+        Matrix res = new Matrix(width(), height());
+        for(int i = 0; i < width(); i++)
+            for(int j = 0; j < height(); j++)
+                res.set(i, j, m[j][i]);
         return res;
     }
 }
