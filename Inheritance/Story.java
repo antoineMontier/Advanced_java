@@ -7,8 +7,9 @@ public class Story {
         Woman lila = new Woman("Lila", "sirop", "Violet", true);
         Barman john = new Barman("John");
         Sherif nicolas = new Sherif("Nicolas", "peach sirop");
-        nicolas.presentation();
-        john.serve(nicolas);
+        Cowboy clint = new Sherif("Clint");
+        clint.presentation();
+        clint.shot(don);
 
     }
 }

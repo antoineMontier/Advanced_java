@@ -25,7 +25,7 @@ public class Human {
     }
 
     public void talk(String text){
-        System.out.println("(" + name + ") : " + text);
+        System.out.println("(" + getName() + ") : " + text);
     }
 
     public void presentation(){
