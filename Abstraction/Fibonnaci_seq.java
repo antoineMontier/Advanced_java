@@ -3,18 +3,18 @@ package Abstraction;
 public class Fibonnaci_seq extends Numerical_seq{
     private int U0 = 1, U1 = 1;
 
-
+    @Override
     public double next(double previous_term){
         return previous_term + previous_term / 1.609; // approx with the golden number
     }
-
+    @Override
     public double valueOf(int term){
         if(term < 0) return 0; // error
         if(term == 0) return U0;
         if(term == 1) return U1;
         return valueOf(term-1) + valueOf(term-2);
     }
-
+    @Override
     public double sum(int term){
         if(term < 0) return 0; // error
         if(term == 0) return U0;

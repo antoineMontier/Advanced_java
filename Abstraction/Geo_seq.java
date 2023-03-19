@@ -10,15 +10,15 @@ public class Geo_seq extends Numerical_seq{
         q = reason;
     }
 
-
+    @Override
     public double next(double previous_term){
         return q * previous_term;
     }
-
+    @Override
     public double valueOf(int term){
         return U0*Math.pow(q, term);
     }
-
+    @Override
     public double sum(int term){
         if(q == 1)
             return (term+1) * U0;
