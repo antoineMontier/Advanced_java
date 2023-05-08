@@ -10,19 +10,19 @@ University lesson on Java
 
 ## Collection Interface
 Collection Interface has a multiples methods : 
-- add(Elt) : adds a new element to the collection, regardless wether or not the element is already in the collection.
-- addAll(Collection) : adds all the elements the called collection elements in the calling collection.
-- remove(index) : removes the element at the **index** from the collection, returns the removed element.
-- remove(Elt) : removes the **first occurence** of the element from the collection, returns **true** or **false** depending on whether the element is removed or not.
-- removeAll(Collection) : removes **all** elements from the collection if they are contained in the collection given as **argument**.
-- retainAll(Collection) : removes all elements if they are not present in the collection given as **argument**.
-- contains(Element) : **true** or **false**
-- containsAll(Collection) : returns **true** if the collection contains all elements the collection given as **argument** contains. Regardless of **quantity**. Returns false else.
-- size() : int
-- clear() : empty the collection
-- interator() : returns an interator of the collection
-- toArray() : returns an array of the collection,
-- toArray(Array) : modifies the array given as argument with the content of the list. If not enough room, the array will not be filled
+- `add(Elt)` : adds a new element to the collection, regardless wether or not the element is already in the collection.
+- `addAll(Collection)` : adds all the elements the called collection elements in the calling collection.
+- `remove(index)` : removes the element at the **index** from the collection, returns the removed element.
+- `remove(Elt)` : removes the **first occurence** of the element from the collection, returns **true** or **false** depending on whether the element is removed or not.
+- `removeAll(Collection)` : removes **all** elements from the collection if they are contained in the collection given as **argument**.
+- `retainAll(Collection)` : removes all elements if they are not present in the collection given as **argument**.
+- `contains(Element)` : **true** or **false**
+- `containsAll(Collection)` : returns **true** if the collection contains all elements the collection given as **argument** contains. Regardless of **quantity**. Returns false else.
+- `size()` : int
+- `clear()` : empty the collection
+- `interator()` : returns an interator of the collection
+- `toArray()` : returns an array of the collection,
+- `toArray(Array)` : modifies the array given as argument with the content of the list. If not enough room, the array will not be filled
 
 Exemple of toArray() functions : 
 ```java
@@ -70,4 +70,34 @@ Many Classes implements Map Interface :
 - TreeMap > stores the keys in a **tree** structure and needs a **comparator** to do it. **Logarithmic** complexity.
 - LinkedHashMap > stores the keys in a **LinkedList** structure. **Linear** complexity.
 
+### Boxing / Unboxing / Auto-boxing
 
+When using an interface like Map, Collection... we are using a **generic** interface.
+Generic types needs to be specified explicitly. For example : 
+```java
+Map<Integer, String> map = new TreeMap<>(); // will create a map with Integers as keys and Strings as values
+List<String> l = new ArrayList<>(); // will create a list of Strings
+List<List<Integer>> list_l = new LinkedList<>(); // will create a list of List of Integer, ie a 2D mutable Array
+```
+We can't create a list or a Map of `int`, `float`, `double`... they are primitive types and they are not supported for this use.
+The solution is **boxing**. instead of keeping an `int`, we will keep an `Integer`. 
+Today's java is doing **Auto-boxing**. Inside an `Integer` list we can put an int. Java will automatically cast the `int` into an `Integer`.
+It's the same process for `double` and `Double`, `float` and `Float`...
+
+## Iterator 
+An iterator is an object used to iterate over a collection. It is basically a pointer that points to an object inside the collection.
+**Warning** : An iterator must be used as soon as it's created. If the collection is modified between creation and use of the iterator, it can throw an exception.
+Here are the **Iterator** methods : 
+- hasNext() returns wether or not the actual pointed element has a next element.
+- next() points to the next element and returns its value. Throws an exception if the next element does not exists.
+- remove() removes the element that is actually pointed out by the iterator. next() must have been called at least once.
+
+Example of use : 
+```java
+List<String> l = new ArrayList<>();
+l.add("a"); l.add("b"); l.add("c"); l.add("d"); l.add("a");
+Iterator<String> it = l.iterator();
+while(it.hasNext())
+    System.out.printf("it : %s\t", it.next());
+    System.out.println("");
+```

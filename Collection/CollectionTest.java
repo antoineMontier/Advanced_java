@@ -3,25 +3,15 @@ package Collection;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Iterator;
 
 public class CollectionTest {
     public static void main(String[] args){
-        List<String> c = new LinkedList<>();
         List<String> l = new LinkedList<>();
-        l.add("aaa");
-        l.add("baba");
-        String[] tab = new String[2];
-        l.toArray(tab);
-        System.out.println("tab :  " + Arrays.toString(tab));
-        c.add("babaaa");
-        c.add("aaa");
-        c.add("baba");
-        System.out.println("c : " +c);
-        System.out.println("d : " + l);
-
-        System.out.println(c.containsAll(l));
-        System.out.println("c : " +c);
-        System.out.println("d : " + l);
-
+        l.add("a"); l.add("b"); l.add("c"); l.add("d"); l.add("a");
+        Iterator<String> it = l.iterator();
+        while(it.hasNext())
+            System.out.printf("it : %s\t", it.next());
+            System.out.println("");
     }
 }
