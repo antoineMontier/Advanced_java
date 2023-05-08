@@ -32,7 +32,7 @@ l.add("b");
 String[] tab = new String[0];
 tab = d.toArray(new String[0]);
 System.out.println("tab :  " + Arrays.toString(tab)); // returns "tab :  [a, b]"
-// ==================================================
+// =============================================================================
 List<String> l = new LinkedList<>();
 l.add("a");
 l.add("a");
@@ -78,14 +78,21 @@ Many Classes implements Map Interface :
 When using an interface like Map, Collection... we are using a **generic** interface.
 Generic types needs to be specified explicitly. For example : 
 ```java
-Map<Integer, String> map = new TreeMap<>(); // will create a map with Integers as keys and Strings as values
-List<String> l = new ArrayList<>(); // will create a list of Strings
+Map<Integer, String> map = new TreeMap<>(); // ==== will create a map with Integers as keys and Strings as values
+List<String> l = new ArrayList<>(); // ============ will create a list of Strings
 List<List<Integer>> list_l = new LinkedList<>(); // will create a list of List of Integer, ie a 2D mutable Array
 ```
 We can't create a list or a Map of `int`, `float`, `double`... they are primitive types and they are not supported for this use.
 The solution is **boxing**. instead of keeping an `int`, we will keep an `Integer`. 
 Today's java is doing **Auto-boxing**. Inside an `Integer` list we can put an int. Java will automatically cast the `int` into an `Integer`.
 It's the same process for `double` and `Double`, `float` and `Float`...
+
+#### Diamond operator
+The diamond operator `<>` is used to infer the type of the data : 
+```java
+Map<Integer, String> map = new HashMap<Integer, String>();  // long and too much informations
+Map<Integer, String> map = new HashMap<>(); // =============== short and easier to read
+```
 
 ## Iterator 
 An iterator is an object used to iterate over a collection. It is basically a pointer that points to an object inside the collection.
@@ -105,3 +112,57 @@ while(it.hasNext())
     System.out.println("");
 ```
 Iterators can be used to iterate over an `array` or an `HashMap` but it's not optimal.
+
+## Collections Class
+**Do not mismatch with Collection interface**
+The Collections class is a polymorph class that implements lots of algorithms, as `sort()` and `reverse()`. It operates on Collections.
+
+### Difference with List Class
+The List class extends the Collections Class. It adds `add(index)`, `remove(index, Elt)`, `addAll(index, Collection)` and so on...
+These are the classes that extends the List Class : 
+1. ArrayList            > better for access
+2. LinkedList           > better for add and remove
+3. Stack                > particular use
+4. Vector               > particular use
+5. CopyOnWriteArrayList > thread safe
+
+## Iterate over a List
+Here are 4 usual ways to iterate over a List of the Collections class : 
+
+#### basic iteration
+```java
+for(int i = 0; i < l.size() ; ++i) System.out.println(l.get(i));
+```
+#### Iterator iteration
+```java
+Iterator<String> it = l.iterator();
+while(it.hasNext()) System.out.println(it.next());
+```
+#### foreach iteration
+```java
+l.forEach(s -> System.out.println(s));
+```
+#### advanced foreach iteration
+```java
+l.forEach(System.out::println);
+```
+
+## Sort a list
+
+#### sort method with a comparator
+```java
+l.sort((a, b) -> a - b);
+```
+#### prebuilt comparators
+```java
+l.sort(Comparator.naturalOrder());
+l.sort(Comparator.reverseOrder());
+```
+#### Collections sorting
+```java
+Collections.sort(l);
+```
+#### streams sorting
+```java
+l = l.stream().sorted(Comparator.naturalOrder()).collect(Collectors.toList());
+```
