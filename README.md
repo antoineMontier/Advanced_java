@@ -49,6 +49,9 @@ l.add("a");
     System.out.println("tab :  " + Arrays.toString(tab)); // returns "tab :  [null]"
 ```
 
+- `forEach(Consumer)` : iterates over the collection and consumes the elements, for example to print the elements.
+
+
 
 Collection Interface Inherits from **Iterable** interface. The collection interface has **3** son-interfaces. 
 - Set : No order, no duplicates, `add()`, `remove()`, `contains()`... > **HashSet** and **TreeSet** are implementing the **Set** Interface.
@@ -101,3 +104,4 @@ while(it.hasNext())
     System.out.printf("it : %s\t", it.next());
     System.out.println("");
 ```
+Iterators can be used to iterate over an `array` or an `HashMap` but it's not optimal.

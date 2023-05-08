@@ -1,6 +1,7 @@
 package Map;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -10,6 +11,7 @@ public class MapTest {
         map.put(1, "String1");
         map.put(2, "String2");
         map.put(-2, "");
+        Iterator iterator = map.iterator();
         System.out.println(map.entrySet());
 
     }
