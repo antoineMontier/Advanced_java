@@ -197,8 +197,7 @@ With streams, you can read and write from multiple sources / destinations :
 - communication between two executions files
 - bytes arrays
 - strings
-- URL
-...
+- URL...
 
 ### Zoom on `Java.io.InputStream` Class
 - `public InputStream ()`                       Constructor.
@@ -207,9 +206,19 @@ With streams, you can read and write from multiple sources / destinations :
 - `public int read (byte[] buff, start, nb)`    Fills up `nb` of the buffer slots from `start` with the bytes from the input stream.
 - `public long skip (n)`                        Passes `n` bytes in the input stream.
 - `public int available ()`                     Returns how many bytes are available for reading.
-- `public void close ()`                        Closes the input stream.
+- `public void close ()`                        Closes the InputStream.
 - `synchronized void mark (bytes_limit)`        Places a mark to maybe go back in the future. `bytes_limit` stands for the number of bytes read after the mark can be forgotten.
 - `synchronized void reset ()`                  Places the stream at the last mark.
 - `public boolean markSupported ()`             Indicates if the stream supports mark notion (used to go backwards).
 
+---
+
+### Zoom on `java.io.OutputStream` Class
+- `public OutputStream ()`                              Constructor.
+- `abstract void write (byte)`                          Writes the given `byte` into the stream.
+- `public abstract int write (byte[] buff)`             Writes the `buff` array into the stream.
+- `public abstract int write (byte[] buff, start, len)` Writes `len` slots the `byte` array into the stream from `start`.
+- `public void close ()`                                Closes the OutputStream.
+
+## Commented example of file writing
 
