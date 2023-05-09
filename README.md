@@ -166,3 +166,50 @@ Collections.sort(l);
 ```java
 l = l.stream().sorted(Comparator.naturalOrder()).collect(Collectors.toList());
 ```
+
+# Files 
+Most of the files classes are contained in the **java.io** package.
+
+
+### Main Classes
+- InputStream    > **bytes** streams *Abstract*
+- OutputStream   > **bytes** streams *Abstract*
+- Reader         > Unicode **char** streams *Abstract*
+- Writer         > Unicode **char** streams *Abstract*
+- File           > **File** and **directory** manipulation
+- StremTokenizer > **lexical** analysis of an entry stream
+- BufferedReader > Adds a **buffer** to read a character stream
+
+`read()` and `write()` are the two mains methods of streams Classes.
+
+
+### Traditional use
+3 steps of usage with streams : 
+1. Open
+2. Use
+3. Close
+
+### Why to use streams ?
+With streams, you can read and write from multiple sources / destinations : 
+- Files
+- Socket (network communication)
+- Images
+- communication between two executions files
+- bytes arrays
+- strings
+- URL
+...
+
+### Zoom on `Java.io.InputStream` Class
+- `public InputStream ()`                       Constructor.
+- `abstract int read ()`                        Returns the byte **(0-255)** in the input stream or **-1** if it's the end of the input stream.
+- `public int read (byte[] buff)`               Fills up the buffer with the bytes from the input stream.
+- `public int read (byte[] buff, start, nb)`    Fills up `nb` of the buffer slots from `start` with the bytes from the input stream.
+- `public long skip (n)`                        Passes `n` bytes in the input stream.
+- `public int available ()`                     Returns how many bytes are available for reading.
+- `public void close ()`                        Closes the input stream.
+- `synchronized void mark (bytes_limit)`        Places a mark to maybe go back in the future. `bytes_limit` stands for the number of bytes read after the mark can be forgotten.
+- `synchronized void reset ()`                  Places the stream at the last mark.
+- `public boolean markSupported ()`             Indicates if the stream supports mark notion (used to go backwards).
+
+
