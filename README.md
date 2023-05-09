@@ -259,12 +259,14 @@ String filename = "random_name.txt";
 File myfile = new File(filename); // file to test
 System.out.println(filename + " exists : " + test.exists()); 
 ```
+
 #### Prints the files/directories in the current directory
 ```java
 File current = new File(".");
 File[] files_array = file.listFiles(); // returns an array of files
 Arrays.stream(files_array).forEach(System.out::println); // prints the array
 ```
+
 #### Copy a file
 - Programmatically, If `dest` file already exists it will replace its content.
 
