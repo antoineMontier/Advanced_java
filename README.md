@@ -266,6 +266,7 @@ File current = new File(".");
 File[] files_array = file.listFiles(); // returns an array of files
 Arrays.stream(files_array).forEach(System.out::println); // prints the array
 ```
+It is possible to know wether a file is a directory or no using the method `isDirectory()`.
 
 #### Copy a file
 - Programmatically, If `dest` file already exists it will replace its content.
