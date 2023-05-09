@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class exercice {
@@ -13,8 +14,8 @@ public class exercice {
         // test if a file exists
         // System.out.println(fileExists("Files/blabla.txt"));
 
-        // prints all the files inside of the current directory
-        // print_files(".");
+        // prints all the files and directories inside of the current directory
+        print_files("..");
 
         // prints the content of a file
         // printFile("Files/blabla.txt");
@@ -31,8 +32,7 @@ public class exercice {
     public static void print_files(String directory){
         File file = new File(directory);
         File[] files = file.listFiles();
-        for(int i = 0; i < files.length; i++)
-            System.out.println(files[i]);
+        Arrays.stream(files).forEach(System.out::println);
     }
 
     public static void printFile(String filename){
@@ -40,14 +40,14 @@ public class exercice {
             System.out.println("File not found");
             return;
         }
-        FileReader fr;
         try{
-            fr = new FileReader(filename);
+            FileReader fr = new FileReader(filename);
             Scanner sc = new Scanner(fr);
             while(sc.hasNextLine())
                 System.out.println(sc.nextLine());
             sc.close();
-        }catch(FileNotFoundException e){
+            fr.close();
+        }catch(IOException e){
             e.printStackTrace();
         }
     }

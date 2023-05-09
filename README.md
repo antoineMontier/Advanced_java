@@ -220,5 +220,52 @@ With streams, you can read and write from multiple sources / destinations :
 - `public abstract int write (byte[] buff, start, len)` Writes `len` slots the `byte` array into the stream from `start`.
 - `public void close ()`                                Closes the OutputStream.
 
-## Commented example of file writing
+### Commented example of file **writing**
+
+```java
+System.out.println("about to write in file " + filename + " type 'STOP' to end :");
+try{
+    Scanner sc = new Scanner(System.in); // scanner used to read user input
+    FileWriter fw = new FileWriter(filename); // writing stream
+    String buff = "";
+    while(!(buff = sc.next()).contains("STOP") && buff != null)
+        fw.append(buff + "\n"); // write the buffer into the stream
+    fw.flush(); // commit changes
+    fw.close(); // close the stream
+    sc.close(); // close the scanner
+}catch(IOException e){
+    e.printStackTrace();
+}
+```
+
+### Commented example of file **reading**
+```java
+try{
+    FileReader fr = new FileReader(filename); // reading stream
+    Scanner sc = new Scanner(fr);   // scanner to read from file
+    while(sc.hasNextLine()) // read while next line exists
+        System.out.println(sc.nextLine()); // prints a line and go to the next
+    sc.close(); // close the scanner
+    fr.close(); // close the reading stream
+}catch(IOException e){
+    e.printStackTrace();
+}
+```
+
+### Commented example of different File functions : 
+#### test wether or not the specified file exists in the current directory
+```java
+String filename = "random_name.txt";
+File myfile = new File(filename); // file to test
+System.out.println(filename + " exists : " + test.exists()); 
+```
+#### Prints the files/directories in the current directory
+```java
+File current = new File(".");
+File[] files_array = file.listFiles(); // returns an array of files
+Arrays.stream(files_array).forEach(System.out::println); // prints the array
+```
+
+
+
 
