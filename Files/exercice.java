@@ -1,10 +1,10 @@
 package Files;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -15,13 +15,17 @@ public class exercice {
         // System.out.println(fileExists("Files/blabla.txt"));
 
         // prints all the files and directories inside of the current directory
-        print_files("..");
+        // print_files("..");
 
         // prints the content of a file
         // printFile("Files/blabla.txt");
 
         // writes terminal into a file
         // write_in_file("Files/test.txt");
+
+        // copy a file to a different file
+        // copy_file("Files/blabla.txt", "Files/test.txt");
+        quick_copy_file("Files/blabla.txt", "Files/test.txt");
     }
 
     public static boolean fileExists(String filename){
@@ -66,6 +70,28 @@ public class exercice {
         }catch(IOException e){
             e.printStackTrace();
         }
+    }
+
+    public static void copy_file(String src, String dest){
+        if(!fileExists(src)){
+            System.out.println("File " + src + " not found");
+            return;
+        }
+        try{
+            Scanner read = new Scanner(new FileReader(src));
+            FileWriter fw = new FileWriter(dest);
+            while(read.hasNextLine())
+                fw.append(read.nextLine() + "\n");
+            fw.close(); read.close(); // Close also the FileReader explicitly
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void quick_copy_file(String src, String dest){
+        try{
+            Files.copy(new File(src).toPath(), new File(dest).toPath());
+        }catch(IOException e){e.printStackTrace();}
     }
 
 }

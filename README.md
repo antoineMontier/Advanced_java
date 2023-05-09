@@ -226,7 +226,7 @@ With streams, you can read and write from multiple sources / destinations :
 System.out.println("about to write in file " + filename + " type 'STOP' to end :");
 try{
     Scanner sc = new Scanner(System.in); // scanner used to read user input
-    FileWriter fw = new FileWriter(filename); // writing stream
+    FileWriter fw = new FileWriter(filename); // writing stream, the file will be created or replaced if it already exists
     String buff = "";
     while(!(buff = sc.next()).contains("STOP") && buff != null)
         fw.append(buff + "\n"); // write the buffer into the stream
@@ -265,7 +265,26 @@ File current = new File(".");
 File[] files_array = file.listFiles(); // returns an array of files
 Arrays.stream(files_array).forEach(System.out::println); // prints the array
 ```
+#### Copy a file
+- Programmatically, If `dest` file already exists it will replace its content.
 
+```java
+try{
+    Scanner read = new Scanner(new FileReader(src)); // reader
+    FileWriter fw = new FileWriter(dest); // ========== writer
+
+    while(read.hasNextLine()) // ============ while scanner has a next line
+        fw.append(read.nextLine() + "\n"); // write every lines
+    fw.close(); read.close(); // ============ close ressources (closes also the FileReader explicitly)
+}catch(IOException e){e.printStackTrace();}
+```
+
+- Using `java.nio.file.Files`, If `dest` file already exists it will throw an exception.
+```java
+try{
+    Files.copy(new File(src).toPath(), new File(dest).toPath()); // toPath() returns a path object needed for the copy operation of Files
+}catch(IOException e){e.printStackTrace();}
+```
 
 
 
