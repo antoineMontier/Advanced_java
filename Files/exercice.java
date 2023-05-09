@@ -25,7 +25,7 @@ public class exercice {
 
         // copy a file to a different file
         // copy_file("Files/blabla.txt", "Files/test.txt");
-        quick_copy_file("Files/blabla.txt", "Files/test.txt");
+        // quick_copy_file("Files/blabla.txt", "Files/test.txt");
     }
 
     public static boolean fileExists(String filename){
