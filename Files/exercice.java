@@ -26,6 +26,21 @@ public class exercice {
         // copy a file to a different file
         // copy_file("Files/blabla.txt", "Files/test.txt");
         // quick_copy_file("Files/blabla.txt", "Files/test.txt");
+
+        // delete a file
+        // delete_file("Files/blabla.txt");
+
+        // move a file
+        // move_file("Files/blabla.txt", "Files/temp_dir/");
+    }
+
+    public static void delete_file(String filename){
+        new File(filename).delete();        
+    }
+
+    public static void move_file(String filename, String dir_name){
+        String file_name_without_path = filename.substring(filename.lastIndexOf("/") + 1);
+        new File(filename).renameTo(new File(dir_name + "/" + file_name_without_path));
     }
 
     public static boolean fileExists(String filename){
