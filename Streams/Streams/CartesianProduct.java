@@ -16,7 +16,7 @@ public class CartesianProduct {
 
         List<String> res = cartesianProduct(list1, list2);
         
-        res.stream().forEach(s -> System.out.println(s));
+        res.stream().forEach(System.out::println);
 
     }
 
