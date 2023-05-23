@@ -11,7 +11,7 @@ public class MapTest {
         map.put(1, "String1");
         map.put(2, "String2");
         map.put(-2, "");
-        Iterator iterator = map.iterator();
+        Iterator<Map<Integer, String>> iterator = map.iterator();
         System.out.println(map.entrySet());
 
     }
