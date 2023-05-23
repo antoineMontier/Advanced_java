@@ -28,11 +28,12 @@ public class Main{
         if(n < 2) return n;
         Fibo one = new Fibo(n-1, nb_threads/2);
         Fibo two = new Fibo(n-2, nb_threads/2);
-
-        one.start(); two.start();
+        Thread tone = new Thread(one);
+        Thread ttwo = new Thread(two);
+        tone.start(); ttwo.start();
 
         try{
-            one.join();two.join();
+            tone.join();ttwo.join();
         }catch(Exception e){
             e.printStackTrace();
         }

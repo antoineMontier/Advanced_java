@@ -1,6 +1,6 @@
 package Threads.Fibonacci;
 
-public class Fibo extends Thread {
+public class Fibo implements java.lang.Runnable {
 
     private int n;
     private int res;
@@ -15,10 +15,12 @@ public class Fibo extends Thread {
         if(nb_th / 2 > 0){
             Fibo one = new Fibo(n-1, nb_th/2);
             Fibo two = new Fibo(n-2, nb_th/2);
-            one.start(); two.start();
+            Thread tone = new Thread(one);
+            Thread ttwo = new Thread(two);
+            tone.start(); ttwo.start();
 
             try{
-                one.join();two.join();
+                tone.join();ttwo.join();
             }catch(Exception e){
                 e.printStackTrace();
             }

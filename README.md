@@ -65,6 +65,7 @@ Map Interface comes with a bunch of methods. The idea behind Map interface is to
 - `get(key)` gets the object with the given key. Returns null if there ar no value for the given key.
 - `containsKey(key)` Returns wether or not a given key **present**, even if it's linked to a null object.
 - `containsValue(value)` Returns wether or not a given value is **present**. `containsValue(null)` will be true only if null has been inserted into the map.
+- `size()` Returns the number of pairs in the map.
 - `values()` returns an object **array** of the values present in the Map.
 - `keySet()` returns an object **Set** of the keys (no repetitions and no order).
 
@@ -72,6 +73,8 @@ Many Classes implements Map Interface :
 - HashMap > stores the keys in a Hash Table. **Linear** complexity.
 - TreeMap > stores the keys in a **tree** structure and needs a **comparator** to do it. **Logarithmic** complexity.
 - LinkedHashMap > stores the keys in a **LinkedList** structure. **Linear** complexity.
+
+
 
 ### Boxing / Unboxing / Auto-boxing
 
