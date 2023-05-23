@@ -12,11 +12,10 @@ public class MatrixRes extends Thread{
     }
 
     public void run (){
-        for(int k = 0 ; k < b[i].length ; k++)
-            r += a[i][k] * b[k][j];
-        }
+        for(int k = 0 ; k < b.length ; k++) r += a[i][k] * b[k][j];
+    }
 
-    public int getR() {
+    public int res() {
         return r;
     }
 

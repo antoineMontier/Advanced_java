@@ -15,14 +15,17 @@ public class Main {
     }
 
     public static int[][] multiplyMatrices(int[][] matrixA, int[][] matrixB){
-        int[][] C = new int[matrixA.length][matrixB[0].length];
-
-        MatrixRes[] mr = new MatrixRes[matrixA.length*
-        // preparation
-        for(int i = 0 ; i < C.length; i++)
-            for(int j = 0 ; j < C[i].length ; j++)
-
-            
+        int colsA = matrixA.length, linesA = matrixA[0].length, colsB = matrixB.length, linesB = matrixB[0].length;
+        if (linesA != colsB) throw new IllegalArgumentException("lines of A must be = to colsB ");
+        MatrixRes[][] mrT = new MatrixRes[linesA][colsB];
+        for(int i = 0 ; i < mrT.length; i++) for(int j = 0 ; j < mrT[i].length ; j++) mrT[i][j] = new MatrixRes(i, j, matrixA, matrixB);
+        for(int i = 0 ; i < mrT.length; i++) for(int j = 0 ; j < mrT[i].length ; j++) mrT[i][j].start();
+        try{
+            for(int i = 0 ; i < mrT.length; i++) for(int j = 0 ; j < mrT[i].length ; j++) mrT[i][j].join();
+        }catch(Exception e){e.printStackTrace();}
+        int[][] res = new int[linesA][colsB];
+        for(int i = 0 ; i < mrT.length; i++) for(int j = 0 ; j < mrT[i].length ; j++) res[i][j] = mrT[i][j].res();
+        return res;
     }
 
 }
