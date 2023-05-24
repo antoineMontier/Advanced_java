@@ -32,7 +32,15 @@ public class FileProcessor {
     public boolean loadFiles(String file_extension){
         if(!parentDirectory.isDirectory() || !parentDirectory.exists()) return false;
         files = new HashMap<>();
-        rec_find_file(parentDirectory, file_extension);
+        FileFinder finder = new FileFinder(parentDirectory);
+        FileFinder.f = new ArrayList<>();
+        FileFinder.file_ext = file_extension;
+        Thread r = new Thread(finder);
+        r.start();
+        try{
+            r.join();
+        }catch(Exception e){e.printStackTrace();}
+        for(File f : FileFinder.f) files.put(f, 0);
         return files.size() != 0;
     }
 
@@ -41,15 +49,6 @@ public class FileProcessor {
         else files.keySet().stream().map(f -> f.getName()).forEach(System.out::println);
     }
 
-    private void rec_find_file(File currentDir, String file_ext){
-        if(!currentDir.exists() || !currentDir.isDirectory()) return;
-        File[] subfiles = currentDir.listFiles();
-        if(subfiles == null || subfiles.length == 0) return;
-        for(File sf : subfiles){
-            if(sf.isDirectory()) rec_find_file(sf, file_ext);
-            if(sf.isFile() && sf.getName().contains(file_ext) && !sf.getName().substring(0, sf.getName().length() - 2).contains(file_ext)) files.put(sf, 0);
-        }
-    }
 
     public void countWords() throws FileException {
         if(files == null) throw new FileException("loadFiles before countWords !");
