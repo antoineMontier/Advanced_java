@@ -7,6 +7,7 @@ public class Main {
 
         System.out.println("prix moyen FOR = " + mgp.prixMoyenFOR());
         System.out.println("prix moyen IT  = " + mgp.prixMoyenIT());
+        System.out.println("prix moyen STREAM  = " + mgp.prixMoyenSTREAM());
         mgp.afficheListe(5.5, 100);
     }
 }

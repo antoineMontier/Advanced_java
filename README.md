@@ -97,6 +97,11 @@ Map<Integer, String> map = new HashMap<Integer, String>();  // long and too much
 Map<Integer, String> map = new HashMap<>(); // =============== short and easier to read
 ```
 
+#### `?` Wildcard
+Java allows its users to specify the content of a generic class : 
+for example if we declare a List l as : `List<? extends T> l;` ; l will be able to **hold only objects that inherit from T**
+The oposite is : `List<? super T> l;` ; l will be able to **hold only objects from whom T inherits**
+
 ## Iterator 
 An iterator is an object used to iterate over a collection. It is basically a pointer that points to an object inside the collection.
 **Warning** : An iterator must be used as soon as it's created. If the collection is modified between creation and use of the iterator, it can throw an exception.
