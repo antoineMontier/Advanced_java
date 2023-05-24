@@ -1,9 +1,7 @@
 package Streams;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 
 
@@ -15,8 +13,9 @@ public class CartesianProduct {
         List<Character> list2 = Arrays.asList('a', 'b', 'c', 'd');
 
         List<String> res = cartesianProduct(list1, list2);
-        
-        res.stream().forEach(System.out::println);
+        // res.stream().forEach(System.out::println);
+
+        for(String s : res) System.out.println(s);
 
     }
 
