@@ -1,0 +1,7 @@
+}
+    }
+        super(message);
+    public IndexNonValideException(String message){
+public class IndexNonValideException extends Exception {
+
+package Exam2022_06;
