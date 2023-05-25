@@ -9,5 +9,10 @@ public class Main {
         System.out.println("prix moyen IT  = " + mgp.prixMoyenIT());
         System.out.println("prix moyen STREAM  = " + mgp.prixMoyenSTREAM());
         mgp.afficheListe(5.5, 100);
+
+        EcrireFichierProduit efp = new EcrireFichierProduit("Exam2022/Stock.csv");
+        efp.loadInMemory(new Produit("elenore", 12, 10));
+        efp.saveInMemory();
+        
     }
 }

@@ -12,6 +12,7 @@ public class Produit {
     }
 
     public String toString(){return nom + " " + prixHT + "€ " + tva  + "%";}
+    public String toCSV(){return nom + ";" + prixHT + ";" + tva;}
 
     public String getNom(){return nom;}
     public double getPrixHT(){return prixHT;}

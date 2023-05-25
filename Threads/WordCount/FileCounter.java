@@ -1,8 +1,8 @@
 package Threads.WordCount;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.Scanner;
 
 public class FileCounter implements java.lang.Runnable {
 
@@ -16,11 +16,10 @@ public class FileCounter implements java.lang.Runnable {
 
     public void run(){
         try{
-            FileReader fr = new FileReader(f);
-            Scanner sc = new Scanner(fr);
-            while(sc.hasNextLine()) count += sc.nextLine().split(" ").length;
-            sc.close();
-            fr.close();
+            BufferedReader br = new BufferedReader(new FileReader(f));
+            String line;
+            while((line = br.readLine()) != null) count += line.split(" ").length;
+            br.close();
         }catch(Exception e){e.printStackTrace();}
     }
 

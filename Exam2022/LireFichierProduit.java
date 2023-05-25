@@ -1,5 +1,6 @@
 package Exam2022;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -19,14 +20,13 @@ public class LireFichierProduit {
     public boolean lire(){
         if(!fichier.exists() || fichier.isDirectory()) return false;
         try{
-            FileReader fr = new FileReader(fichier);
-            Scanner sc = new Scanner(fr);
-            while(sc.hasNextLine()){
-                String[] infos = sc.next().split(";");
+            BufferedReader br = new BufferedReader(new FileReader(fichier));
+            String line;
+            while((line = br.readLine()) != null){
+                String[] infos = line.split(";");
                 produits.add(new Produit(infos[0], Double.parseDouble(infos[1]), Double.parseDouble(infos[2])));
             }
-            sc.close();
-            fr.close();
+            br.close();
         }catch(IOException e){e.printStackTrace(); return false;}
         return true;
     }
