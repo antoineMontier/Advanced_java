@@ -1,5 +1,7 @@
 package Files;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -9,7 +11,7 @@ import java.util.Scanner;
 
 public class Ex {
     public static void main(String[] args){
-        // ====== test if a file exists ======
+        /*// ====== test if a file exists ======
         File f = new File("Files/test.txt");
         p(f.getName()  + " exists : " +   f.exists());
 
@@ -22,40 +24,39 @@ public class Ex {
         p("files of actual directory : "); Arrays.stream(dir.listFiles()).forEach(System.out::println);
 
 
-        // ================================================
+        // ================================================*/
 
-        // ====== prints the content of a file ======
+        /*// ====== prints the content of a file ======
         File ff = new File ("Files/test.txt");
         p(ff.getName()  + " exists : " +   ff.exists());
         try{
-            FileReader fr = new FileReader(ff);
-            Scanner s = new Scanner(fr);
-            while(s.hasNextLine())
-                p(s.nextLine());
-            s.close();
-            fr.close();
+            BufferedReader br = new BufferedReader(new FileReader(ff));
+            String l;
+            while((l = br.readLine()) != null)
+                p(l);
+            br.close();
         }catch (IOException e){e.printStackTrace();}
 
 
-        // ================================================
+        // ================================================*/
 
         // ====== writes from terminal into a file ======
         
         File to_write = new File("new_file.txt");
         p("ready to write in " + to_write.getName() + " type '*STOP*' to stop and commit");
         try{
-            FileWriter fw = new FileWriter(to_write);
+            BufferedWriter bw = new BufferedWriter(new FileWriter(to_write, true));
             Scanner sc = new Scanner(System.in);
-            while(sc.hasNextLine()) {String s = sc.nextLine() ; if (s.contains("STOP")) break; fw.append(s + "\n");}
+            while(sc.hasNextLine()) {String s = sc.nextLine() ; if (s.contains("STOP")) break; bw.write(s); bw.newLine();}
             sc.close();
-            fw.flush();
-            fw.close();
+            bw.flush();
+            bw.close();
         }catch(IOException e){ e.printStackTrace();}
         p("done");
         
         // ================================================
 
-        // ====== copy a file to a different file ======/*
+        /*// ====== copy a file to a different file ======
         File src = new File("Files/test.txt");
         p("copy possible : " + (src.exists() && src.isFile()));
         File dst = new File("Files/copied.txt");
@@ -72,7 +73,7 @@ public class Ex {
 
         // ================================================*/
 
-        // ====== delete a file ======
+        /*// ====== delete a file ======
         File delete = new File("Files/copied.txt");
         p("delete possible : " + (src.exists() && src.isFile()));
         p("deleted : " + delete.delete());
@@ -85,7 +86,7 @@ public class Ex {
         p("moved : " + tomove.renameTo(new File("./Files/temp_dir/blabla.txt")));
 
 
-        // ================================================
+        // ================================================*/
 
 
     }
