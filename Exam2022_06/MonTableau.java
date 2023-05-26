@@ -23,9 +23,11 @@ public class MonTableau<T extends Number> {
     }
 
 
-    public Stream plusGrandQue(T nb){
+    public Stream<T> plusGrandQue(T nb){
         return 
-        Arrays.stream(tableau).filter(p -> ((((T)p).doubleValue()) - nb.doubleValue() >= 0));
+        Arrays.stream(tableau)
+                .filter(p -> ((((T)p).doubleValue()) - nb.doubleValue() >= 0))
+                .map(x -> (T)x);
     }
 
 }

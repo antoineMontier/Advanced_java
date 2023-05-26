@@ -1,6 +1,106 @@
 # Advanced JAVA
 University lessons on Java.
 
+# Repository architecture
+
+```sh
+.
+├── 8americain
+│   ├── Carte.java
+│   ├── CollectionCartes.java
+│   ├── Joueur.java
+│   ├── Main.java
+│   ├── MainJoueur.java
+│   ├── Symboles.java
+│   ├── TasCartes.java
+│   └── Valeurs.java
+├── Abstraction
+│   ├── Fibonnaci_seq.java
+│   ├── Geo_seq.java
+│   ├── Numerical_seq.java
+│   └── Test_seq.java
+├── Collection
+│   └── CollectionTest.java
+├── Exam2022
+│   ├── Boite.java
+│   ├── EcrireFichierProduit.java
+│   ├── LireFichierProduit.java
+│   ├── MainGestionProduit.java
+│   ├── Main.java
+│   ├── Produit.java
+│   └── Stock.csv
+├── Exam2022_03
+│   ├── EntNat.java
+│   ├── ErrConst.java
+│   ├── ErrModif.java
+│   ├── ErrNat.java
+│   └── Main.java
+├── Exam2022_06
+│   ├── copied.txt
+│   ├── IndexNonValideException.java
+│   ├── InverserFichier.java
+│   ├── Main.java
+│   └── MonTableau.java
+├── Files
+│   ├── exercice.java
+│   ├── Ex.java
+│   ├── temp_dir
+│   │   └── blabla.txt
+│   └── test.txt
+├── Inheritance
+│   ├── Barman.java
+│   ├── Cowboy.java
+│   ├── Human.java
+│   ├── Robber.java
+│   ├── Sherif.java
+│   ├── Story.java
+│   └── Woman.java
+├── Map
+│   └── MapTest.java
+├── Matrix
+│   ├── Matrix.java
+│   └── MatrixTest.java
+├── README.md
+├── Streams
+│   ├── FiboStream.java
+│   ├── Streams
+│   │   ├── CartesianProduct.java
+│   │   └── Pair.java
+│   └── StremsEx.java
+├── TabPolynom
+│   ├── Polynom.java
+│   └── TestPolynom.java
+├── Threads
+│   ├── A.java
+│   ├── E.java
+│   ├── Fibonacci
+│   │   ├── Fibo.java
+│   │   └── Main.java
+│   ├── FileSearch
+│   │   ├── FileSearch.java
+│   │   └── Main.java
+│   ├── IntSum
+│   │   ├── Main.java
+│   │   └── Sum.java
+│   ├── MatrixMult
+│   │   ├── Main.java
+│   │   └── MatrixRes.java
+│   ├── TabCount
+│   │   ├── Main.java
+│   │   └── TabCount.java
+│   └── WordCount
+│       ├── FileCounter.java
+│       ├── FileException.java
+│       ├── FileFinder.java
+│       ├── FileProcessor.java
+│       └── Main.java
+└── two_degree
+    ├── Test_Eq.java
+    └── Two_D_Eq.java
+```
+
+
+
 ## Java threads methods:
 - `getState()` returns `RUNNABLE`, `BLOCKED`, `NEW` or `TERMINATED`. ( which are the states that a thread can be in.)
 - `getPriority()` returns the priority of the thread. Priority is an integer between 1 and 10. The higher the priority the sooner the execution will end. (high priority = execute first).
